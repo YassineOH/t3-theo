@@ -15,7 +15,18 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${GeistSans.variable}`}>
-      <body>{children}</body>
+      <body>
+        <TopNav />
+        <main className="container mx-auto">{children}</main>
+      </body>
     </html>
+  );
+}
+
+function TopNav() {
+  return (
+    <div className="container  inset-0 mx-auto h-min w-full bg-transparent py-4 backdrop-blur-xl">
+      <nav className="flex w-full items-center justify-center">Top Nav</nav>
+    </div>
   );
 }
