@@ -5,7 +5,8 @@
 - [x] Actually set up a db
 - [x] Attach database to UI
 - [x] Add authentication
-- [ ] Add image upload
+- [x] taint 'server-only'
+- [x] Add image upload
 - [ ] Error management
 - [ ] Routing and image page
 - [ ] Delete button
