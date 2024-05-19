@@ -1,7 +1,6 @@
 export const dynamic = "force-dynamic";
 import { SignedIn, SignedOut } from "@clerk/nextjs";
-import { auth } from "@clerk/nextjs/server";
-import { db } from "~/server/db";
+import { getMyImages } from "~/server/queries";
 
 export default async function HomePage() {
   return (
@@ -19,10 +18,7 @@ export default async function HomePage() {
 }
 
 async function Images() {
-  const { userId } = auth();
-  const images = await db.query.images.findMany({
-    where: (i, { eq }) => eq(i.userId, userId!),
-  });
+  const images = await getMyImages();
   return (
     <div className="flex flex-wrap items-center justify-center gap-4">
       {images.map((i) => (
