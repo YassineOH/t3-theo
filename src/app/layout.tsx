@@ -12,15 +12,21 @@ export const metadata = {
 
 export default function RootLayout({
   children,
+  modal,
 }: {
   children: React.ReactNode;
+  modal: React.ReactNode;
 }) {
   return (
     <ClerkProvider>
       <html lang="en" className={`${GeistSans.variable}`}>
         <body>
           <TopNav />
-          <main className="container mx-auto">{children}</main>
+          <main className="container mx-auto">
+            {children}
+            {modal}
+            <div id="root-modal" />
+          </main>
         </body>
       </html>
     </ClerkProvider>
