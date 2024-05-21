@@ -4,6 +4,7 @@ import { GeistSans } from "geist/font/sans";
 import { ClerkProvider } from "@clerk/nextjs";
 import TopNav from "./_components/TopNav";
 import { Toaster } from "~/components/ui/sonner";
+import { CSPostHogProvider } from "./_analytics/provider";
 
 export const metadata = {
   title: "Create T3 Gallery",
@@ -20,17 +21,19 @@ export default function RootLayout({
 }) {
   return (
     <ClerkProvider>
-      <html lang="en" className={`${GeistSans.variable} dark`}>
-        <body>
-          <TopNav />
-          <main className="container mx-auto">
-            {children}
-            {modal}
-            <div id="root-modal" />
-            <Toaster />
-          </main>
-        </body>
-      </html>
+      <CSPostHogProvider>
+        <html lang="en" className={`${GeistSans.variable} dark`}>
+          <body>
+            <TopNav />
+            <main className="container mx-auto">
+              {children}
+              {modal}
+              <div id="root-modal" />
+              <Toaster />
+            </main>
+          </body>
+        </html>
+      </CSPostHogProvider>
     </ClerkProvider>
   );
 }
