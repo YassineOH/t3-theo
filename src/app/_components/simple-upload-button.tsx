@@ -93,6 +93,13 @@ function SimpleUploadButton() {
     onUploadProgress: () => {
       //
     },
+    onUploadError: (err) => {
+      console.log(err);
+
+      posthog.capture("upload fail");
+      toast.dismiss("upload-begin");
+      toast.error("Upload Failed", { duration: 300 });
+    },
   });
 
   return (

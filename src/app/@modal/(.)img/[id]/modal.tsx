@@ -1,11 +1,13 @@
 "use client";
 
 import { type ElementRef, useEffect, useRef } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { createPortal } from "react-dom";
+import Link from "next/link";
 
 export function Modal({ children }: { children: React.ReactNode }) {
   const router = useRouter();
+  const pathname = usePathname();
   const dialogRef = useRef<ElementRef<"dialog">>(null);
 
   useEffect(() => {
@@ -28,6 +30,12 @@ export function Modal({ children }: { children: React.ReactNode }) {
         >
           close
         </button>
+        <Link
+          href={pathname}
+          className="rounded-md bg-white px-4 py-2 font-bold text-slate-900 "
+        >
+          Go
+        </Link>
       </dialog>
     </div>,
     document.getElementById("root-modal")!,
