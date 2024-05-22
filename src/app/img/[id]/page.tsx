@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { clerkClient } from "@clerk/nextjs/server";
 import Link from "next/link";
-import { getImage } from "~/server/queries";
+import { deleteImage, getImage } from "~/server/queries";
 
 interface Params {
   id: string;
@@ -26,6 +26,21 @@ async function ImagePage({ params }: { params: Params }) {
         <div>
           <p>Created on:</p>
           <p>{new Date(img.createdAt).toLocaleDateString()}</p>
+        </div>
+        <div className="">
+          <form
+            action={async () => {
+              "use server";
+              await deleteImage(img.id);
+            }}
+          >
+            <button
+              type="submit"
+              className="cursor-pointer rounded-md bg-red-600 px-4 py-2 font-semibold text-white transition-all duration-300 hover:bg-red-800"
+            >
+              delete
+            </button>
+          </form>
         </div>
         <Link href="/" className="font-bold">
           Go back
